@@ -1,6 +1,0 @@
-2023-06-23 22:40:03 [main] INFO  : Starting DemoApplication using Java 17.0.7 with PID 10972 (C:\Users\Hari\Personal\work\sts_workspace\Boot_H2_CRUP\target\classes started by Hari in C:\Users\Hari\Personal\work\sts_workspace\Boot_H2_CRUP)
-2023-06-23 22:40:03 [main] DEBUG : Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-06-23 22:40:03 [main] INFO  : No active profile set, falling back to 1 default profile: "default"
-2023-06-23 22:40:08 [main] INFO  : Started DemoApplication in 5.712 seconds (process running for 10.476)
-2023-06-23 22:40:19 [http-nio-8080-exec-1] DEBUG : title is null 
-2023-06-23 22:40:19 [http-nio-8080-exec-1] DEBUG : title is empty 
