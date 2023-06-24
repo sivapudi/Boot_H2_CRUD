@@ -1,0 +1,4 @@
+com\phd\controller\TutorialController.class
+com\phd\DemoApplication.class
+com\phd\model\Tutorial.class
+com\phd\repository\TutorialRepository.class
