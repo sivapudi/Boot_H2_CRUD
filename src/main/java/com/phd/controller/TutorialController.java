@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.phd.DemoApplication;
+import com.phd.exception.ResourceNotFoundException;
 import com.phd.model.Tutorial;
 import com.phd.repository.TutorialRepository;
 
@@ -78,7 +79,8 @@ public class TutorialController {
 	public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorail) {
 
 		try {
-			Tutorial created = tutorialRepository.save(new Tutorial(tutorail.getTitle(),tutorail.getDescription(), tutorail.isPublished()));
+			Tutorial created = tutorialRepository
+					.save(new Tutorial(tutorail.getTitle(), tutorail.getDescription(), tutorail.isPublished()));
 			return new ResponseEntity<>(created, HttpStatus.CREATED);
 		} catch (Exception e) {
 			logger.error("got exception in tutorail creation :{}", e.getMessage());
@@ -86,8 +88,22 @@ public class TutorialController {
 		}
 
 	}
+
+	@PutMapping("/tutorials/advice/{id}")
+	public ResponseEntity<Tutorial> updateTutorialWothAdvice(@PathVariable("id") long id,
+			@RequestBody Tutorial tutorial) {
+
+		Tutorial tutorialData = tutorialRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Tutorial not found with id::" + id));
+		tutorialData.setTitle(tutorial.getTitle());
+		tutorialData.setDescription(tutorial.getDescription());
+		tutorialData.setPublished(tutorial.isPublished());
+		return new ResponseEntity<>(tutorialRepository.save(tutorialData), HttpStatus.OK);
+	}
+
 	@PutMapping("/tutorials/{id}")
 	public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") long id, @RequestBody Tutorial tutorial) {
+
 		Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
 
 		if (tutorialData.isPresent()) {
@@ -100,7 +116,7 @@ public class TutorialController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@DeleteMapping("/tutorials/{id}")
 	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
 		try {
@@ -110,7 +126,7 @@ public class TutorialController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@GetMapping("/tutorials/published")
 	public ResponseEntity<List<Tutorial>> findByPublished() {
 		try {
