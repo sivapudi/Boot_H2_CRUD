@@ -30,6 +30,7 @@ import com.phd.repository.TutorialRepository;
 @RequestMapping("/phd")
 public class TutorialController {
 //	https://www.bezkoder.com/spring-boot-jpa-h2-example/
+//	https://github.com/bezkoder/spring-boot-h2-database-crud/tree/master
 //	https://stackoverflow.com/questions/58298381/database-c-data-sample-not-found-and-ifexists-true-so-we-cant-auto-create-i
 //	https://github.com/RameshMF/spring-boot-tutorial/tree/master
 	private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
@@ -40,7 +41,7 @@ public class TutorialController {
 	@GetMapping("/tutorials")
 	public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
 
-		List<Tutorial> tutorials = new ArrayList<Tutorial>();
+		List<Tutorial> tutorials = new ArrayList<>();
 
 		try {
 			if (title == null) {
