@@ -31,7 +31,7 @@ import com.phd.repository.TutorialRepository;
 public class TutorialController {
 //	https://www.bezkoder.com/spring-boot-jpa-h2-example/
 //	https://stackoverflow.com/questions/58298381/database-c-data-sample-not-found-and-ifexists-true-so-we-cant-auto-create-i
-
+//	https://github.com/RameshMF/spring-boot-tutorial/tree/master
 	private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
 
 	@Autowired
